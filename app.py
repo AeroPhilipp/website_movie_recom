@@ -60,7 +60,7 @@ def get_link(titel:str):
         return res['items']
 
     results = google_search(
-        f'{titel} Offical Trailer', my_api_key, my_cse_id, num=1)
+        f'{titel} Trailer', my_api_key, my_cse_id, num=1)
     for result in results:
         return result['link']
 
@@ -71,10 +71,11 @@ with st.sidebar:
     #old requests: 'Artificial intelligence is taking over'
     label = 'gsh'
 
-    st.session_state.model = st.toggle('Model 1 or Model 2')
+
     #if st.session_state.model:
-    '''Model 1 (based on Text): Compares input text with movie summaries📝'''
-    '''Model 2 (based on Favorits): See what users with similar favorits also liked🎯'''
+    '''**Model 1 (based on Text):** Compares input text with movie summaries📝'''
+    st.session_state.model = st.toggle('Model 1 or Model 2')
+    '''**Model 2 (based on Favorits):** See what users with similar favorits also liked🎯'''
     #else:
 
     if st.button('get movies'):
