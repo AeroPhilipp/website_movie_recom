@@ -85,12 +85,12 @@ with st.sidebar:
             st.session_state.old_model = st.session_state.model
             if not st.session_state.model: # model 1
                 st.session_state.text_predict_movies = True
-                st.session_state.update_movies = True
-                #st.session_state.show_movies = True
+                #st.session_state.update_movies = True
+                st.session_state.show_movies = True
             elif len(st.session_state.list_of_favorites) > 0: # model 2 and fav list not empty
                 st.session_state.user_predict_movies = True
-                st.session_state.update_movies = True
-                #st.session_state.show_movies = True
+                #st.session_state.update_movies = True
+                st.session_state.show_movies = True
 
         if len(st.session_state.list_of_favorites) == 0 and st.session_state.model==True:
             st.warning('⚠️ Empty favorite list! Please first run Model 1 and add a movie to the favorites')
