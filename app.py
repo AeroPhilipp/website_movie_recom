@@ -1,4 +1,6 @@
 import streamlit as st
+st.set_page_config(page_title="Movie Recommender", page_icon="🎬", layout="centered", initial_sidebar_state="expanded")
+
 import numpy as np
 import pandas as pd
 import requests
@@ -7,8 +9,6 @@ from streamlit_player import st_player
 from googleapiclient.discovery import build
 from params import *
 
-
-st.set_page_config(page_title=None, page_icon=None, layout="centered", initial_sidebar_state="expanded", menu_items=None)
 
 if 'agree' not in st.session_state:
     st.session_state.agree = [False, False, False, False, False]
@@ -72,10 +72,11 @@ with st.sidebar:
     label = 'gsh'
 
     st.session_state.model = st.toggle('Model 1 or Model 2')
-    if st.session_state.model:
-        '''Model 2 (based on Favorits): See what users with similar favorits also liked🎯'''
-    else:
-        '''Model 1 (based on Text): Compares input text with movie summaries📝'''
+    #if st.session_state.model:
+    '''Model 1 (based on Text): Compares input text with movie summaries📝'''
+    '''Model 2 (based on Favorits): See what users with similar favorits also liked🎯'''
+    #else:
+
     if st.button('get movies'):
         if st.session_state.old_list_of_favorites != st.session_state.list_of_favorites or st.session_state.prompt != st.session_state.old_prompt or st.session_state.weight_n != st.session_state.old_weight_n or st.session_state.model != st.session_state.old_model:
             st.session_state.old_list_of_favorites = st.session_state.list_of_favorites
@@ -85,13 +86,16 @@ with st.sidebar:
             if not st.session_state.model: # model 1
                 st.session_state.text_predict_movies = True
                 st.session_state.update_movies = True
-                st.session_state.show_movies = True
+                #st.session_state.show_movies = True
             elif len(st.session_state.list_of_favorites) > 0: # model 2 and fav list not empty
                 st.session_state.user_predict_movies = True
                 st.session_state.update_movies = True
-                st.session_state.show_movies = True
-            else:
-                st.warning('⚠️ Empty favorite list! Please first run Model 1 and add a movie to the favorites')
+                #st.session_state.show_movies = True
+
+        if len(st.session_state.list_of_favorites) == 0 and st.session_state.model==True:
+            st.warning('⚠️ Empty favorite list! Please first run Model 1 and add a movie to the favorites')
+        else:
+            st.session_state.update_movies = True
 
     # st.write('_________________')
     # if (len(st.session_state.list_of_favorites) == 0 and st.session_state.model):
@@ -121,6 +125,7 @@ if st.session_state.update_movies:
     st.session_state.update_movies = False
     st.session_state.already_presented_list.extend(st.session_state.titles_to_present)
 
+
     # call text api
     if st.session_state.text_predict_movies:
         st.session_state.text_predict_movies = False
@@ -134,7 +139,6 @@ if st.session_state.update_movies:
         response = requests.get(url_user, params=user_input)
         data = response.json() #=> {wait: 64}
         st.session_state.api_return_movie_list = data['Our recommendation is']
-
 
     # empty list for new recommendations
     st.session_state.titles_to_present = []
