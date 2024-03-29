@@ -74,9 +74,10 @@ with st.sidebar:
 
     #if st.session_state.model:
     '''**Model 1 (based on Text):** Compares input text with movie summaries📝'''
-    st.session_state.model = st.toggle('Model 1 or Model 2')
+
     '''**Model 2 (based on Favorits):** See what users with similar favorits also liked🎯'''
     #else:
+    st.session_state.model = st.toggle('Model 1 or Model 2')
 
     if st.button('get movies'):
         if st.session_state.old_list_of_favorites != st.session_state.list_of_favorites or st.session_state.prompt != st.session_state.old_prompt or st.session_state.weight_n != st.session_state.old_weight_n or st.session_state.model != st.session_state.old_model:
