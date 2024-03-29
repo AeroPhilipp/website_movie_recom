@@ -60,7 +60,7 @@ def get_link(titel:str):
         return res['items']
 
     results = google_search(
-        f'{titel} Trailer', my_api_key, my_cse_id, num=1)
+        f'{titel} Official Trailer', my_api_key, my_cse_id, num=1)
     for result in results:
         return result['link']
 
