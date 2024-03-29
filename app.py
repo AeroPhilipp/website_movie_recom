@@ -67,7 +67,7 @@ def get_link(titel:str):
 
 with st.sidebar:
     # To Do implement max length of 500 characters input
-    st.session_state.prompt = st.text_area('Input text (Summarise the movie):', 'Man relives day again and again until he learns how to interact with the world in the right way', height=170, max_chars=1000)
+    st.session_state.prompt = st.text_area('Input text (Summarise the movie):', 'Man relives the same day again and again until he learns how to interact with the world in the right way.', height=150, max_chars=1000)
     #old requests: 'Artificial intelligence is taking over'
     label = 'gsh'
 
