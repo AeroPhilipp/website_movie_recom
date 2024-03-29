@@ -73,9 +73,9 @@ with st.sidebar:
 
     st.session_state.model = st.toggle('Model 1 or Model 2')
     if st.session_state.model:
-        '''Model 2: See what users with similar favorits also liked🎯'''
+        '''Model 2 (based on Favorits): See what users with similar favorits also liked🎯'''
     else:
-        '''Model 1: Compares input text with movie summaries📝'''
+        '''Model 1 (based on Text): Compares input text with movie summaries📝'''
     if st.button('get movies'):
         if st.session_state.old_list_of_favorites != st.session_state.list_of_favorites or st.session_state.prompt != st.session_state.old_prompt or st.session_state.weight_n != st.session_state.old_weight_n or st.session_state.model != st.session_state.old_model:
             st.session_state.old_list_of_favorites = st.session_state.list_of_favorites
@@ -111,10 +111,11 @@ user_input = {'prompt': st.session_state.prompt,
               'weight_fav': 0.5
               }
 
-#url = 'https://firstworkingimage-qgokkfvvpq-ew.a.run.app/predict'
+url_text = 'https://firstworkingimage-vzyv5y24ea-ew.a.run.app/predict'
+url_user = 'https://firstworkingimage-vzyv5y24ea-ew.a.run.app/alsoliked'
 #url ='https://moviedocker-5re2l77u2q-ew.a.run.app/predict'
-url_text ='http://127.0.0.1:8000/predict'
-url_user ='http://127.0.0.1:8000/alsoliked'
+# url_text ='http://127.0.0.1:8000/predict'
+# url_user ='http://127.0.0.1:8000/alsoliked'
 
 if st.session_state.update_movies:
     st.session_state.update_movies = False
