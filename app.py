@@ -91,7 +91,7 @@ with st.sidebar:
                 st.session_state.update_movies = True
                 st.session_state.show_movies = True
             else:
-                '''⚠️ empty favorite list! Please first run Model 1 and add a movie to the favorites'''
+                st.warning('⚠️ empty favorite list! Please first run Model 1 and add a movie to the favorites')
 
     # st.write('_________________')
     # if (len(st.session_state.list_of_favorites) == 0 and st.session_state.model):
